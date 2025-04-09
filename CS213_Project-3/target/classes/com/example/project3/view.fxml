@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.Integer?>
+<?import java.lang.String?>
+<VBox alignment="CENTER" prefHeight="850.0" prefWidth="600.0" spacing="20.0"
+      xmlns="http://javafx.com/javafx/21.0.5" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.project3.Controller">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <TabPane prefHeight="550.0" prefWidth="580.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <!-- Open New Account Tab -->
+            <Tab text="Open New">
+                <content>
+                    <AnchorPane>
+                        <GridPane layoutX="20.0" layoutY="10.0" hgap="10" vgap="12">
+                            <columnConstraints>
+                                <ColumnConstraints prefWidth="150.0" />
+                                <ColumnConstraints prefWidth="180.0" />
+                                <ColumnConstraints prefWidth="150.0" />
+                            </columnConstraints>
+
+                            <!-- Row 0-2: Personal Info -->
+                            <Text text="First Name" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                            <TextField fx:id="firstNameField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                            <Text text="Last Name" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                            <TextField fx:id="lastNameField" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                            <Text text="Date of Birth" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                            <DatePicker fx:id="dobPicker" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                            <!-- Row 3-7: Account Type + Campus -->
+                            <Text text="Account Type" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                            <Text text="Campus (College Checking)" GridPane.rowIndex="3" GridPane.columnIndex="2" />
+
+                            <RadioButton fx:id="checkingBtn" text="Checking" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                            <RadioButton fx:id="collegeCheckingBtn" text="College Checking" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+                            <RadioButton fx:id="savingsBtn" text="Savings" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+                            <RadioButton fx:id="moneyMarketBtn" text="Money Market" GridPane.rowIndex="7" GridPane.columnIndex="0" />
+                            <RadioButton fx:id="cdBtn" text="CD" GridPane.rowIndex="8" GridPane.columnIndex="0" />
+
+                            <RadioButton fx:id="newBrunswickBtn" text="New Brunswick" GridPane.rowIndex="4" GridPane.columnIndex="2" />
+                            <RadioButton fx:id="newarkBtn" text="Newark" GridPane.rowIndex="5" GridPane.columnIndex="2" />
+                            <RadioButton fx:id="camdenBtn" text="Camden" GridPane.rowIndex="6" GridPane.columnIndex="2" />
+
+                            <!-- CD Info -->
+                            <Label text="Term (CD)" GridPane.rowIndex="7" GridPane.columnIndex="1" />
+                            <ComboBox fx:id="cdTermBox" GridPane.rowIndex="7" GridPane.columnIndex="2" prefWidth="80.0">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <Integer fx:value="3" />
+                                        <Integer fx:value="6" />
+                                        <Integer fx:value="9" />
+                                        <Integer fx:value="12" />
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+
+                            <Label text="Date Open (CD)" GridPane.rowIndex="8" GridPane.columnIndex="1" />
+                            <DatePicker fx:id="cdDatePicker" GridPane.rowIndex="8" GridPane.columnIndex="2" />
+
+                            <!-- Row 9-10: Deposit + Branch -->
+                            <Text text="Initial Deposit" GridPane.rowIndex="9" GridPane.columnIndex="0" />
+                            <TextField fx:id="depositField" GridPane.rowIndex="9" GridPane.columnIndex="1" />
+
+                            <Text text="Branch" GridPane.rowIndex="10" GridPane.columnIndex="0" />
+                            <ComboBox fx:id="branchBox" GridPane.rowIndex="10" GridPane.columnIndex="1" prefWidth="180.0">
+
+                            </ComboBox>
+
+                            <!-- Open Account Button -->
+                            <Button text="Open Account" GridPane.rowIndex="12" GridPane.columnIndex="1" onAction="#handleOpenAccount" />
+
+                            <!-- Clear All Fields Button -->
+                            <Button text="Clear All Fields" GridPane.rowIndex="12" GridPane.columnIndex="2" onAction="#handleClearFields" />
+
+                        </GridPane>
+                    </AnchorPane>
+                </content>
+            </Tab>
+
+            <!-- Close / Deposit / Withdraw Tab -->
+            <Tab text="Close/Deposite/Withdraw">
+                <content>
+                    <AnchorPane prefHeight="300.0" prefWidth="500.0">
+                        <children>
+                            <Label text="Select Account:" layoutX="30.0" layoutY="30.0" />
+                            <ComboBox fx:id="accountSelectBox" layoutX="150.0" layoutY="25.0" prefWidth="300.0" />
+
+                            <Label text="Amount:" layoutX="30.0" layoutY="70.0" />
+                            <TextField fx:id="amountField" layoutX="150.0" layoutY="65.0" prefWidth="150.0" />
+
+                            <Button text="Deposit" layoutX="150.0" layoutY="110.0" onAction="#handleDeposit" />
+                            <Button text="Withdraw" layoutX="250.0" layoutY="110.0" onAction="#handleWithdraw" />
+
+                            <Button fx:id="closeAccountBtn" text="Close Account" layoutX="150.0" layoutY="150.0" onAction="#handleCloseAccount" />
+                        </children>
+
+                    </AnchorPane>
+                </content>
+            </Tab>
+
+            <!-- Account Database Tab -->
+            <Tab text="Account Database">
+                <content>
+                    <AnchorPane prefHeight="300.0" prefWidth="500.0">
+                        <children>
+                            <Button text="Display All Accounts" layoutX="30.0" layoutY="20.0" onAction="#handleDisplayAccounts" />
+                            <Button text="Open File..." layoutX="320.0" layoutY="20.0" onAction="#handleFileOpen" />
+                            <TextArea fx:id="accountDisplayArea" layoutX="30.0" layoutY="60.0" prefWidth="440.0" prefHeight="200.0" />
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+
+        </tabs>
+    </TabPane>
+
+    <TextArea fx:id="outputArea" prefHeight="299.0" prefWidth="580.0" />
+</VBox>
